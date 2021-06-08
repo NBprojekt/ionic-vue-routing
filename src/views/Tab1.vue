@@ -1,19 +1,23 @@
 <template>
   <ion-page>
     
+    <ion-header :translucent="true">
+      <ion-toolbar>
+        <ion-title> {{ greeting }} </ion-title>
+        <ion-buttons slot="end">
+          <ion-button router-link="/test" routerDirection="forward" color="dark">
+            <ion-icon :icon="timeOutline" size="large" />
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
     <ion-content :fullscreen="true">
-      <ion-header>
+      <ion-header collapse="condense">
         <ion-toolbar class="tab-toolbar">
           <ion-title size="large"> {{ greeting }} </ion-title>
-        
-          <ion-buttons slot="end">
-            <ion-button router-link="/test" routerDirection="forward" color="dark">
-              <ion-icon :icon="timeOutline" size="large" />
-            </ion-button>
-          </ion-buttons>
         </ion-toolbar>
       </ion-header>
-      
     </ion-content>
 
   </ion-page>
