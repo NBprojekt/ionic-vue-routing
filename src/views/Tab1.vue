@@ -1,28 +1,52 @@
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Tab 1</ion-title>
-      </ion-toolbar>
-    </ion-header>
+    
     <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Tab 1</ion-title>
+      <ion-header>
+        <ion-toolbar class="tab-toolbar">
+          <ion-title size="large"> {{ greeting }} </ion-title>
+        
+          <ion-buttons slot="end">
+            <ion-button router-link="/test" routerDirection="forward" color="dark">
+              <ion-icon :icon="timeOutline" size="large" />
+            </ion-button>
+          </ion-buttons>
         </ion-toolbar>
       </ion-header>
-    
-      <ExploreContainer name="Tab 1 page" />
+      
     </ion-content>
+
   </ion-page>
 </template>
 
 <script lang="ts">
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
-import ExploreContainer from '@/components/ExploreContainer.vue';
+import { defineComponent } from 'vue';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonIcon, IonButton, IonButtons } from '@ionic/vue';
+import { timeOutline } from 'ionicons/icons';
 
-export default  {
-  name: 'Tab1',
-  components: { ExploreContainer, IonHeader, IonToolbar, IonTitle, IonContent, IonPage }
-}
+export default defineComponent({
+  name: 'Home',
+  components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonIcon, IonButton, IonButtons },
+  setup() {
+    return {
+      timeOutline,
+    }
+  },
+  data(): any {
+    return {
+      greeting: 'Hello'
+    }
+  },
+  created() {
+    const hours = new Date().getHours();
+     
+    if (hours > 18) {
+      this.greeting = 'Good Evening';
+    } else if (hours > 12) {
+      this.greeting = 'Good Day';
+    } else {
+      this.greeting = 'Good Morning';
+    }
+  },
+});
 </script>
