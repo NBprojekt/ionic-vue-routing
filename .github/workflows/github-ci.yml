@@ -49,7 +49,7 @@ jobs:
         retention-days: 1
 
   deploy:
-    needs: [test-unit, test-e2e]
+    needs: [build]
     name: '🚀 deploy: github-pages'
     runs-on: ubuntu-20.04
     steps:
